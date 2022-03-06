@@ -1,0 +1,22 @@
+{
+  "name": "nodeksef",
+  "version": "1.0.0",
+  "description": "ksef project",
+  "main": "index.js",
+  "scripts": {
+    "test": "testcom"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NataliaSunday/nodeksef.git"
+  },
+  "author": "Natalia Niedziela",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NataliaSunday/nodeksef/issues"
+  },
+  "homepage": "https://github.com/NataliaSunday/nodeksef#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
