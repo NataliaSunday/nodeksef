@@ -2,8 +2,9 @@ const express = require('express');
 const https = require('https');
 const app = express();
 
-const port = 8000;
 
+const port = 8000;
+let challengeAuth;
 const data = JSON.stringify({
   "contextIdentifier": {
     "type": "onip",
@@ -25,6 +26,7 @@ const req = https.request(options, res => {
 
     res.on('data', d => {
        console.log(d);
+       challengeAuth = d;
     })
 })
 
@@ -34,6 +36,11 @@ req.on('error', error => {
 
 req.write(data)
 req.end()
+
+app.get('/', (req, res) => {
+  res.send(challengeAuth)
+
+});
 
   app.listen(port, () => {
     console.log(`Now listening on port ${port}`);
