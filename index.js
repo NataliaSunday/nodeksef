@@ -85,7 +85,7 @@ const req = https.request(options, res => {
       fs.writeFile('initSessionToken.xml', doc, function(err){
 		if (err) 
         return console.log(err);
-    	console.log('Wrote Hello World in file helloworld.txt, just check it');
+    	console.log('Stworzono dokument');
 
 	  }
     )
