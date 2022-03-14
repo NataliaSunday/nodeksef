@@ -1,42 +1,10 @@
-const express = require('express');
-const https = require('https');
-const app = express();
-const fs = require('fs');
-
-const port = 8000;
-
-
-
-const data = JSON.stringify({
-  "contextIdentifier": {
-    "type": "onip",
-    "identifier": "1111111111"
-  }
-})
-const options = {
-    hostname: 'ksef-test.mf.gov.pl',
-    path: '/api/online/Session/AuthorisationChallenge',
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-        'accept': 'application/json'
-    }
-}
-
-const req = https.request(options, res => {
-    console.log(`statusCode: ${res.statusCode}`)
-
-    res.on('data', d => {
-		
-       console.log(d);
-       process.stdout.write(d)
-	   let doc = `<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 		<ns3:InitSessionSignedRequest
 			xmlns="http://ksef.mf.gov.pl/schema/gtw/svc/online/types/2021/10/01/0001"
 			xmlns:ns2="http://ksef.mf.gov.pl/schema/gtw/svc/types/2021/10/01/0001"
 			xmlns:ns3="http://ksef.mf.gov.pl/schema/gtw/svc/online/auth/request/2021/10/01/0001">
 			<ns3:Context>
-				<Challenge>${d}</Challenge>
+				<Challenge>{"timestamp":"2022-03-14T12:42:41.234Z","challenge":"20220314-CR-025B70D92B-541CBFCB62-F9"}</Challenge>
 				<Identifier xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:SubjectIdentifierByCompanyType">
 					<ns2:Identifier>1111111111</ns2:Identifier>
 				</Identifier>
@@ -75,25 +43,4 @@ const req = https.request(options, res => {
 				<Type>SerialNumber</Type>
 			</ns3:Context>
 		</ns3:InitSessionSignedRequest>
-		`;
-      fs.writeFile('initSessionToken.xml', doc, function(err){
-		if (err) 
-        return console.log(err);
-    	console.log('Wrote Hello World in file helloworld.txt, just check it');
-
-	  }
-    )
-})
-})
-req.on('error', error => {
-    console.error(error)
-  })
-
-req.write(data)
-req.end()
-
-  app.listen(port, () => {
-    console.log(`Now listening on port ${port}`);
-  });
-
- 
+		
