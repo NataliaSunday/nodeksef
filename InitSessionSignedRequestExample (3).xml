@@ -1,17 +1,10 @@
-const express = require('express');
-const https = require('https');
-const app = express();
-const fs = require('fs');
-
-const port = 8000;
-
-let doc = `<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ns3:InitSessionSignedRequest
 	xmlns="http://ksef.mf.gov.pl/schema/gtw/svc/online/types/2021/10/01/0001"
 	xmlns:ns2="http://ksef.mf.gov.pl/schema/gtw/svc/types/2021/10/01/0001"
 	xmlns:ns3="http://ksef.mf.gov.pl/schema/gtw/svc/online/auth/request/2021/10/01/0001">
 	<ns3:Context>
-		<Challenge>${d}</Challenge>
+		<Challenge>20211001-CR-FFFFFFFFFF-FFFFFFFFFF-FF</Challenge>
 		<Identifier xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:SubjectIdentifierByCompanyType">
 			<ns2:Identifier>1111111111</ns2:Identifier>
 		</Identifier>
@@ -50,45 +43,3 @@ let doc = `<?xml version="1.0" encoding="UTF-8"?>
 		<Type>SerialNumber</Type>
 	</ns3:Context>
 </ns3:InitSessionSignedRequest>
-`;
-
-
-const data = JSON.stringify({
-  "contextIdentifier": {
-    "type": "onip",
-    "identifier": "1111111111"
-  }
-})
-const options = {
-    hostname: 'ksef-test.mf.gov.pl',
-    path: '/api/online/Session/AuthorisationChallenge',
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-        'accept': 'application/json'
-    }
-}
-
-const req = https.request(options, res => {
-    console.log(`statusCode: ${res.statusCode}`)
-
-    res.on('data', d => {
-       console.log(d);
-       process.stdout.write(d)
-      fs.appendFile('InitSessionDoc.xml', doc, () => {
-        if(err) 
-        console.log(err);
-      }
-    )
-})
-
-req.on('error', error => {
-    console.error(error)
-  })
-
-req.write(data)
-req.end()
-
-  app.listen(port, () => {
-    console.log(`Now listening on port ${port}`);
-})
