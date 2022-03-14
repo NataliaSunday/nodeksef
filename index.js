@@ -30,13 +30,19 @@ const req = https.request(options, res => {
 		
        console.log(d);
        process.stdout.write(d)
+	  d = JSON.parse(d);
+	  console.log(d.timestamp);
+	  let chal = JSON.stringify(d.challenge);
+	  chal =  chal.substr(1, chal.length);
+	  chal =  chal.substr(0, chal.length-1)
+	  console.log(chal)
 	   let doc = `<?xml version="1.0" encoding="UTF-8"?>
 		<ns3:InitSessionSignedRequest
 			xmlns="http://ksef.mf.gov.pl/schema/gtw/svc/online/types/2021/10/01/0001"
 			xmlns:ns2="http://ksef.mf.gov.pl/schema/gtw/svc/types/2021/10/01/0001"
 			xmlns:ns3="http://ksef.mf.gov.pl/schema/gtw/svc/online/auth/request/2021/10/01/0001">
 			<ns3:Context>
-				<Challenge>${d}</Challenge>
+				<Challenge>${chal}</Challenge>
 				<Identifier xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:SubjectIdentifierByCompanyType">
 					<ns2:Identifier>1111111111</ns2:Identifier>
 				</Identifier>
