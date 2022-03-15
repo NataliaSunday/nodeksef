@@ -4,7 +4,7 @@
 			xmlns:ns2="http://ksef.mf.gov.pl/schema/gtw/svc/types/2021/10/01/0001"
 			xmlns:ns3="http://ksef.mf.gov.pl/schema/gtw/svc/online/auth/request/2021/10/01/0001">
 			<ns3:Context>
-				<Challenge>20220315-CR-91A922C8DB-E71C73E4D1-A3</Challenge>
+				<Challenge>20220314-CR-ED9D4FF8E2-4CCB3A0383-F6</Challenge>
 				<Identifier xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:SubjectIdentifierByCompanyType">
 					<ns2:Identifier>1111111111</ns2:Identifier>
 				</Identifier>
@@ -16,7 +16,8 @@
 						<ns2:TargetNamespace>http://crd.gov.pl/wzor/2021/11/29/11089/</ns2:TargetNamespace>
 						<ns2:Value>FA</ns2:Value>
 					</ns2:FormCode>
-				</DocumentType>			
+				</DocumentType>
+				<Token>HPsbiRILOfHxDsUEOqkoz3L13mhf2nVjAV955eOO6zK9xzkExPvvRrS1cPeOWJvqF/h+ND+AlgW4R3vVmaBj1EzCsGkK2pERBG8BSxU9fHa9Z9htMqkpEVNI7vaz/+R4mPyV+QVFlvXjqL1tLlBUSA7PGtkizWY6NX9vY1g/mOIXpD+o1CWzunQgPz+qQU3BPM91mw6jd3E4Ir+rjP5GtUZPtBCGje7YJdQH5gSa6JiyFfZFoX135Gh6xWs3ViE9GBlXpVBz1bi/jrb5Og0cQ8d+7SzNUePdESNfHPA039TccpagyraPrZfKfGOGmvCZE6Vo9QyqfZMo1ZA2OCtDOQ==</Token>
 			</ns3:Context>
 		</ns3:InitSessionSignedRequest>
 		
