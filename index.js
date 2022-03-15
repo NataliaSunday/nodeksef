@@ -1,11 +1,9 @@
 const express = require('express');
 const https = require('https');
-const app = express();
 const fs = require('fs');
 
+const app = express();
 const port = 8000;
-
-
 
 const data = JSON.stringify({
   "contextIdentifier": {
@@ -34,7 +32,7 @@ const req = https.request(options, res => {
 	  console.log(d.timestamp);
 	  let chal = JSON.stringify(d.challenge);
 	  chal =  chal.substr(1, chal.length);
-	  chal =  chal.substr(0, chal.length-1)
+	  chal =  chal.substr(0, chal.length-1);
 	  console.log(chal)
 	   let doc = `<?xml version="1.0" encoding="UTF-8"?>
 		<ns3:InitSessionSignedRequest
@@ -54,31 +52,7 @@ const req = https.request(options, res => {
 						<ns2:TargetNamespace>http://crd.gov.pl/wzor/2021/11/29/11089/</ns2:TargetNamespace>
 						<ns2:Value>FA</ns2:Value>
 					</ns2:FormCode>
-				</DocumentType>
-				<Encryption>
-					<ns2:EncryptionKey>
-						<ns2:Encoding>Base64</ns2:Encoding>
-						<ns2:Algorithm>AES</ns2:Algorithm>
-						<ns2:Size>256</ns2:Size>
-						<ns2:Value>H2+YWam2q/6GJafnC+qbkWDeNvZb8brpUkXw5cstNP5GnK+DGyIIwgCS7kXJXa2X8BOh9OWJXry5l7wZMq+WCXCif1+pQ+5+FbJlm16A3PB5BNy2S6cBubS2Q+kdk5FJs7pFMt6U+6jEPKMrmxi0D3nFyYK6cKmVZFQHa/4faj7qa70KEpyL49WJxdHGbQfAoe05z5OKyiZZftz+oGJVystA+fCLufVhiZ7gIuZLov8aamO1ghum1vYsG7nqJ1OrmUVrpgqv5jCqdMo+4FqG9XMKntgGsmydskjPiSxj1mF4+qNAP6neINrDrG+M1lCg/VBhrdnTAGnyfsODfohbiw==</ns2:Value>
-					</ns2:EncryptionKey>
-					<ns2:EncryptionInitializationVector>
-						<ns2:Encoding>Base64</ns2:Encoding>
-						<ns2:Bytes>16</ns2:Bytes>
-						<ns2:Value>5+DjwCfRIQPaX1Rj3jMAWw==</ns2:Value>
-					</ns2:EncryptionInitializationVector>
-					<ns2:EncryptionAlgorithmKey>
-						<ns2:Algorithm>RSA</ns2:Algorithm>
-						<ns2:Mode>ECB</ns2:Mode>
-						<ns2:Padding>PKCS#1</ns2:Padding>
-					</ns2:EncryptionAlgorithmKey>
-					<ns2:EncryptionAlgorithmData>
-						<ns2:Algorithm>AES</ns2:Algorithm>
-						<ns2:Mode>CBC</ns2:Mode>
-						<ns2:Padding>PKCS#7</ns2:Padding>
-					</ns2:EncryptionAlgorithmData>
-				</Encryption>
-				<Type>SerialNumber</Type>
+				</DocumentType>			
 			</ns3:Context>
 		</ns3:InitSessionSignedRequest>
 		`;
@@ -86,14 +60,12 @@ const req = https.request(options, res => {
 		if (err) 
         return console.log(err);
     	console.log('Stworzono dokument');
-
-	  }
-    )
+	  });
 })
 })
 req.on('error', error => {
-    console.error(error)
-  })
+    console.error(error);
+  });
 
 req.write(data)
 req.end()
