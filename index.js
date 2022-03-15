@@ -30,6 +30,9 @@ const req = https.request(options, res => {
        process.stdout.write(d)
 	  d = JSON.parse(d);
 	  console.log(d.timestamp);
+	  let time = JSON.stringify(d.timestamp);
+	  time =  time.substr(1, time.length);
+	  time =  time.substr(0, time.length-1);
 	
 	  let chal = JSON.stringify(d.challenge);
 	  chal =  chal.substr(1, chal.length);
@@ -41,6 +44,7 @@ const req = https.request(options, res => {
 		   xmlns:ns2="http://ksef.mf.gov.pl/schema/gtw/svc/types/2021/10/01/0001"
 		   xmlns:ns3="http://ksef.mf.gov.pl/schema/gtw/svc/online/auth/request/2021/10/01/0001">
 		   <ns3:Context>
+		   <Timestamp>${time}</Timestamp>
 			   <Challenge>${chal}</Challenge>
 			   <Identifier xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:SubjectIdentifierByCompanyType">
 				   <ns2:Identifier>1111111111</ns2:Identifier>
