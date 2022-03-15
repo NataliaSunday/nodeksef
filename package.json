@@ -18,6 +18,7 @@
   "homepage": "https://github.com/NataliaSunday/nodeksef#readme",
   "dependencies": {
     "crypto": "^1.0.1",
-    "express": "^4.17.3"
+    "express": "^4.17.3",
+    "node-rsa": "^1.1.1"
   }
 }

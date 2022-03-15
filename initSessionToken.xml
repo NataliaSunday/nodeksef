@@ -1,23 +1,46 @@
-<?xml version="1.0" encoding="UTF-8"?>
-		<ns3:InitSessionSignedRequest
-			xmlns="http://ksef.mf.gov.pl/schema/gtw/svc/online/types/2021/10/01/0001"
-			xmlns:ns2="http://ksef.mf.gov.pl/schema/gtw/svc/types/2021/10/01/0001"
-			xmlns:ns3="http://ksef.mf.gov.pl/schema/gtw/svc/online/auth/request/2021/10/01/0001">
-			<ns3:Context>
-				<Challenge>20220314-CR-ED9D4FF8E2-4CCB3A0383-F6</Challenge>
-				<Identifier xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:SubjectIdentifierByCompanyType">
-					<ns2:Identifier>1111111111</ns2:Identifier>
-				</Identifier>
-				<DocumentType>
-					<ns2:Service>KSeF</ns2:Service>
-					<ns2:FormCode>
-						<ns2:SystemCode>FA (1)</ns2:SystemCode>
-						<ns2:SchemaVersion>1-0E</ns2:SchemaVersion>
-						<ns2:TargetNamespace>http://crd.gov.pl/wzor/2021/11/29/11089/</ns2:TargetNamespace>
-						<ns2:Value>FA</ns2:Value>
-					</ns2:FormCode>
-				</DocumentType>
-				<Token>HPsbiRILOfHxDsUEOqkoz3L13mhf2nVjAV955eOO6zK9xzkExPvvRrS1cPeOWJvqF/h+ND+AlgW4R3vVmaBj1EzCsGkK2pERBG8BSxU9fHa9Z9htMqkpEVNI7vaz/+R4mPyV+QVFlvXjqL1tLlBUSA7PGtkizWY6NX9vY1g/mOIXpD+o1CWzunQgPz+qQU3BPM91mw6jd3E4Ir+rjP5GtUZPtBCGje7YJdQH5gSa6JiyFfZFoX135Gh6xWs3ViE9GBlXpVBz1bi/jrb5Og0cQ8d+7SzNUePdESNfHPA039TccpagyraPrZfKfGOGmvCZE6Vo9QyqfZMo1ZA2OCtDOQ==</Token>
-			</ns3:Context>
-		</ns3:InitSessionSignedRequest>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+	   <ns3:InitSessionTokenRequest
+		   xmlns="http://ksef.mf.gov.pl/schema/gtw/svc/online/types/2021/10/01/0001"
+		   xmlns:ns2="http://ksef.mf.gov.pl/schema/gtw/svc/types/2021/10/01/0001"
+		   xmlns:ns3="http://ksef.mf.gov.pl/schema/gtw/svc/online/auth/request/2021/10/01/0001">
+		   <ns3:Context>
+			   <Challenge>20220315-CR-FBB1808867-FAE3AEB392-98</Challenge>
+			   <Identifier xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:SubjectIdentifierByCompanyType">
+				   <ns2:Identifier>1111111111</ns2:Identifier>
+			   </Identifier>
+			   <DocumentType>
+				   <ns2:Service>KSeF</ns2:Service>
+				   <ns2:FormCode>
+					   <ns2:SystemCode>FA (1)</ns2:SystemCode>
+					   <ns2:SchemaVersion>1-0E</ns2:SchemaVersion>
+					   <ns2:TargetNamespace>http://crd.gov.pl/wzor/2021/11/29/11089/</ns2:TargetNamespace>
+					   <ns2:Value>FA</ns2:Value>
+				   </ns2:FormCode>
+			   </DocumentType>
+			   <Encryption>
+				   <ns2:EncryptionKey>
+					   <ns2:Encoding>Base64</ns2:Encoding>
+					   <ns2:Algorithm>AES</ns2:Algorithm>
+					   <ns2:Size>256</ns2:Size>
+					   <ns2:Value>Kmrs/g9ZjI5lKDoMukGDMDULgvx0BkZ6qHEazLLo+LmzK4FNhNp4owcPioydkuiJE02norz5P5hjFO+SMO9kgtPji0Qjx57B+o6tKMUlL6EA3nn40+JNkZuvW+hUnEt7/kxZCcjxEXTuLpQuANwovUxdej041nKRY+sthBEDb3gN4pzJ+HfACysB8H5dpvZj1MkBe7hydLCJlNkEYHYA5dO/3FnW/5fh12Be3ij7Z410+3XZT5AiteEwGCJCPdC0epM3yJgi8uZt2vqn83fgYqSqmMtXLk0ZVjTT4Z1wd2cZ3DF7tlIfoYeB2DKQiwbXAZr/W3jVzYliXBykZLC/Sg==</ns2:Value>
+				   </ns2:EncryptionKey>
+				   <ns2:EncryptionInitializationVector>
+					   <ns2:Encoding>Base64</ns2:Encoding>
+					   <ns2:Bytes>16</ns2:Bytes>
+					   <ns2:Value>H9KQyy/SHurlswE4pxSIsg==</ns2:Value>
+				   </ns2:EncryptionInitializationVector>
+				   <ns2:EncryptionAlgorithmKey>
+					   <ns2:Algorithm>RSA</ns2:Algorithm>
+					   <ns2:Mode>ECB</ns2:Mode>
+					   <ns2:Padding>PKCS#1</ns2:Padding>
+				   </ns2:EncryptionAlgorithmKey>
+				   <ns2:EncryptionAlgorithmData>
+					   <ns2:Algorithm>AES</ns2:Algorithm>
+					   <ns2:Mode>CBC</ns2:Mode>
+					   <ns2:Padding>PKCS#7</ns2:Padding>
+				   </ns2:EncryptionAlgorithmData>
+			   </Encryption>
+			   <Token>TwirOSl1bG+L/6trhvN1j8mpUPZzqqskYXW2NJYqB9aZXpNHOLCmVdZ7dNHV87rZd+Il61tDK4Kdyp1zpM7qEc0S3D8Veobd+ft5+IsUv6D2BognhYkx5NTkwC4iuPLAkApSdJKuporeic0yFyyB8cZfwOIiRpgciqY5OJz6VklMs35e/MjPX8PHqTmmDw9avuyAnkYmK4gQCtY93KiOyACF74JuecPY59dU0lbJufwShojqUP+OVJyeT0NutK9V58kl2A24ZKI0pphi5OSsNy5fajLUIxa+guI9WKPvGo7AGi5UaReFtrRgUG4IcARfPtryWIpgI8M1zIG1Qh3FBw==</Token>
+		   </ns3:Context>
+	   </ns3:InitSessionTokenRequest>
 		
