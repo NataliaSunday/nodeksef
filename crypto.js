@@ -1,10 +1,11 @@
 const nodeRSA = require('node-rsa');
 const fs = require('fs');
-
 const key = new nodeRSA({b:1024});
+
 let secret = fs.readFileSync("initSessionToken.xml");
 
-const publicKey = fs.readFileSync("publicKey.pem");
+
+const publicKey = fs.readFileSync("publicKeyKSEF.pem");
 const privateKey = fs.readFileSync("privateKey.pem");
 
 let key_public = new nodeRSA(publicKey);
@@ -17,7 +18,10 @@ console.log(encryptedString);
 fs.writeFile('initSessionTokenENCRYPTED.xml', encryptedString, function(err){
     if (err) 
     return console.log(err);
-    console.log('Stworzono dokument');
+    console.log('Stworzono dokument zakodowany');
+      
+
+  
   });
 
 /*

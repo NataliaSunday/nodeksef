@@ -30,6 +30,7 @@ const req = https.request(options, res => {
        process.stdout.write(d)
 	  d = JSON.parse(d);
 	  console.log(d.timestamp);
+	
 	  let chal = JSON.stringify(d.challenge);
 	  chal =  chal.substr(1, chal.length);
 	  chal =  chal.substr(0, chal.length-1);
@@ -53,29 +54,6 @@ const req = https.request(options, res => {
 					   <ns2:Value>FA</ns2:Value>
 				   </ns2:FormCode>
 			   </DocumentType>
-			   <Encryption>
-				   <ns2:EncryptionKey>
-					   <ns2:Encoding>Base64</ns2:Encoding>
-					   <ns2:Algorithm>AES</ns2:Algorithm>
-					   <ns2:Size>256</ns2:Size>
-					   <ns2:Value>Kmrs/g9ZjI5lKDoMukGDMDULgvx0BkZ6qHEazLLo+LmzK4FNhNp4owcPioydkuiJE02norz5P5hjFO+SMO9kgtPji0Qjx57B+o6tKMUlL6EA3nn40+JNkZuvW+hUnEt7/kxZCcjxEXTuLpQuANwovUxdej041nKRY+sthBEDb3gN4pzJ+HfACysB8H5dpvZj1MkBe7hydLCJlNkEYHYA5dO/3FnW/5fh12Be3ij7Z410+3XZT5AiteEwGCJCPdC0epM3yJgi8uZt2vqn83fgYqSqmMtXLk0ZVjTT4Z1wd2cZ3DF7tlIfoYeB2DKQiwbXAZr/W3jVzYliXBykZLC/Sg==</ns2:Value>
-				   </ns2:EncryptionKey>
-				   <ns2:EncryptionInitializationVector>
-					   <ns2:Encoding>Base64</ns2:Encoding>
-					   <ns2:Bytes>16</ns2:Bytes>
-					   <ns2:Value>H9KQyy/SHurlswE4pxSIsg==</ns2:Value>
-				   </ns2:EncryptionInitializationVector>
-				   <ns2:EncryptionAlgorithmKey>
-					   <ns2:Algorithm>RSA</ns2:Algorithm>
-					   <ns2:Mode>ECB</ns2:Mode>
-					   <ns2:Padding>PKCS#1</ns2:Padding>
-				   </ns2:EncryptionAlgorithmKey>
-				   <ns2:EncryptionAlgorithmData>
-					   <ns2:Algorithm>AES</ns2:Algorithm>
-					   <ns2:Mode>CBC</ns2:Mode>
-					   <ns2:Padding>PKCS#7</ns2:Padding>
-				   </ns2:EncryptionAlgorithmData>
-			   </Encryption>
 			   <Token>uH6dmA9lr7/5izGMOTXVzIAe1awXZYZ61zLCEaImSLP+BftDtziV5I+4EaKvWZ+IUCkXHP8FEGDsLHfefUVLS5vbZ8r0W5UxiSqqOAKxvkE7pCfh31+AmKZxZa0TlXYK5EYa4RkJhm7HTgKe4WGZ/Y4G2PdCzdImtvZL49yqQQ3bLqeGeVJ9rMzkuxCbtKGbdopN1/V+64fvLClIuolWI+/z0FlxDVE9a0f8EFKPPpzGowVwJcn5PHBkvVh45vT+pyNbDSvEsyL/udRBXCioWbgRaZReRJNIg6YWZLTSHyi8BK4ofQVuhdcPwHjkETmEQ0aktj+uyqmxqvHbFTA93Q==</Token>
 		   </ns3:Context>
 	   </ns3:InitSessionTokenRequest>
@@ -86,6 +64,8 @@ const req = https.request(options, res => {
     	console.log('Stworzono dokument');
 
 	  });
+
+	  
 })
 })
 req.on('error', error => {
@@ -98,5 +78,4 @@ req.end();
   app.listen(port, () => {
     console.log(`Now listening on port ${port}`);
   });
-
- 
+  
