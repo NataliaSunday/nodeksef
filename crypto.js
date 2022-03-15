@@ -2,7 +2,7 @@ const nodeRSA = require('node-rsa');
 const fs = require('fs');
 
 const key = new nodeRSA({b:1024});
-let secret = "wolol";
+let secret = fs.readFileSync("initSessionToken.xml");
 
 const publicKey = fs.readFileSync("publicKey.pem");
 const privateKey = fs.readFileSync("privateKey.pem");
@@ -13,6 +13,12 @@ let key_private = new nodeRSA(privateKey);
 
 let encryptedString = key_public.encrypt(secret);
 console.log(encryptedString);
+
+fs.writeFile('initSessionTokenENCRYPTED.xml', encryptedString, function(err){
+    if (err) 
+    return console.log(err);
+    console.log('Stworzono dokument');
+  });
 
 /*
 var encryptedString = key.encrypt(secret, 'base64');
