@@ -1,7 +1,7 @@
 const express = require('express');
 const https = require('https');
 const fs = require('fs');
-
+const encrypt = require('./crypto');
 const app = express();
 const port = 3000;
 
@@ -62,13 +62,14 @@ const req = https.request(options, res => {
 		   </ns3:Context>
 	   </ns3:InitSessionTokenRequest>
 		`;
+		
       fs.writeFile('initSessionToken.xml', doc, function(err){
 		if (err) 
         return console.log(err);
     	console.log('Stworzono dokument');
-
+		
 	  });
-
+	  encrypt(time);
 	  
 })
 })
