@@ -14,6 +14,29 @@ let key_public = new nodeRSA(publicKey);
 let key_private = new nodeRSA(privateKey);
 
 
+let encryptedString = key_public.encrypt(time, 'base64');
+console.log(encryptedString);
+
+return encryptedString;
+  
+}
+/*
+
+const nodeRSA = require('node-rsa');
+const fs = require('fs');
+const key = new nodeRSA({b:1024});
+
+module.exports =  function encrypt(time){
+  let secret = fs.readFileSync("initSessionToken.xml");
+
+
+const publicKey = fs.readFileSync("publicKeyKSEF.pem");
+const privateKey = fs.readFileSync("privateKey.pem");
+
+let key_public = new nodeRSA(publicKey);
+let key_private = new nodeRSA(privateKey);
+
+
 let encryptedString = key_public.encrypt(secret);
 console.log(encryptedString);
 
@@ -25,7 +48,7 @@ fs.writeFile('initSessionTokenENCRYPTED.xml', encryptedString, function(err){
   });
   
 }
-/*
+----------------------
 var encryptedString = key.encrypt(secret, 'base64');
 console.log(encryptedString);
 
