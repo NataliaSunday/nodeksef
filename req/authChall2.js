@@ -1,6 +1,6 @@
 const https = require('https');
 const fs = require('fs');
-const sign = require('../security/sign');
+const sign = require('../security/sign.js');
 
     const data = JSON.stringify({
         "contextIdentifier": {
@@ -32,9 +32,9 @@ const sign = require('../security/sign');
           let time = JSON.stringify(d.timestamp);
           time =  time.substr(1, time.length);
           time =  time.substr(0, time.length-1);
-          /*sign here wll be */
-          let sign = sign();
-          console.log(sign);
+       
+          let signed = sign();
+          console.log(signed);
 
           let chal = JSON.stringify(d.challenge);
           chal =  chal.substr(1, chal.length);
@@ -87,7 +87,7 @@ const sign = require('../security/sign');
            </ns3:InitSessionSignedRequest>           
             `;
             
-          fs.writeFile('./Doc/initSessionSign.xml', doc, function(err){
+          fs.writeFile('./doc/initSessionSign.xml', doc, function(err){
             if (err) 
             return console.log(err);
             console.log('Stworzono dokument');

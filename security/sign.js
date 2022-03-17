@@ -1,11 +1,13 @@
 var xadesjs = require("xadesjs");
 var { Crypto } = require("@peculiar/webcrypto");
+const fs = require('fs');
 
 xadesjs.Application.setEngine("NodeJS", new Crypto());
 
 // Generate RSA key pair
-var privateKey, publicKey;
-xadesjs.Application.crypto.subtle.generateKey(
+module.exports = function sign(){
+    var privateKey, publicKey;
+    xadesjs.Application.crypto.subtle.generateKey(
     {
         name: "RSASSA-PKCS1-v1_5",
         modulusLength: 1024, //can be 1024, 2048, or 4096,
@@ -21,7 +23,8 @@ xadesjs.Application.crypto.subtle.generateKey(
         publicKey = keyPair.publicKey;
 
         // Call sign function
-        var xmlString = fs.readFileSync("../doc/initSessionSign");
+        var xmlString = toString(fs.readFileSync("./doc/initSessionSign.xml"));
+        console.log(xmlString)
         return SignXml(xmlString, keyPair, { name: "RSASSA-PKCS1-v1_5", hash: { name: "SHA-1" } });
     })
     .then(function (signedDocument) {
@@ -31,7 +34,9 @@ xadesjs.Application.crypto.subtle.generateKey(
         console.error(e);
     });
 
+}
 
+    
 function SignXml(xmlString, keys, algorithm) {
     return Promise.resolve()
         .then(() => {
