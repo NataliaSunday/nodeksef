@@ -4,11 +4,10 @@ const fs = require('fs');
 const key = new nodeRSA({b:1024});
 
 module.exports =  function encrypt(time){
-  let secret = fs.readFileSync("initSessionToken.xml");
 
 
-const publicKey = fs.readFileSync("publicKeyKSEF.pem");
-const privateKey = fs.readFileSync("privateKey.pem");
+const publicKey = fs.readFileSync("./Keys/publicKeyKSEF.pem");
+const privateKey = fs.readFileSync("./Keys/privateKey.pem");
 
 let key_public = new nodeRSA(publicKey);
 let key_private = new nodeRSA(privateKey);
