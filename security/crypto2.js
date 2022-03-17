@@ -29,7 +29,7 @@ function encryptXML(file, publicKeyFile){
         return encrypted;
 }
 
-const file = fs.createReadStream('initSessionToken.xml');
+const file = fs.createReadStream('initSessionSigned.xml');
 const encrypted = encryptXML(file, 'publicKeyKSEF.pem');
 
 onsole.log("Buffer: ", encrypted);

@@ -107,4 +107,3 @@ const encrypt = require('../security/crypto');
     return "/authChallange done";
 
     }
-      
