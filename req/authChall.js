@@ -2,43 +2,47 @@ const https = require('https');
 const fs = require('fs');
 const encrypt = require('../security/crypto');
 
-    const data = JSON.stringify({
-        "contextIdentifier": {
-          "type": "onip",
-          "identifier": "1111111111"
-        }
-      })
-      const options = {
-          hostname: 'ksef-test.mf.gov.pl',
-          path: '/api/online/Session/AuthorisationChallenge',
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json',
-              'accept': 'application/json'
-          }
-      }
+const data = JSON.stringify({
+    "contextIdentifier": {
+    "type": "onip",
+    "identifier": "1111111111"
+    }
+})
+const options = {
+    hostname: 'ksef-test.mf.gov.pl',
+    path: '/api/online/Session/AuthorisationChallenge',
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'accept': 'application/json'
+    }
+}
       
-    module.exports = function authChal(){
+module.exports = function authChal(){
         
     const req = https.request(options, res => {
         console.log(`statusCode: ${res.statusCode}`)
     
         res.on('data', d => {
             
-           console.log(d);
-           process.stdout.write(d)
-          d = JSON.parse(d);
-          console.log(d.timestamp);
-          let time = JSON.stringify(d.timestamp);
-          time =  time.substr(1, time.length);
-          time =  time.substr(0, time.length-1);
-          let encryptedTime = encrypt(time);
-          console.log(encryptedTime);
-          let chal = JSON.stringify(d.challenge);
-          chal =  chal.substr(1, chal.length);
-          chal =  chal.substr(0, chal.length-1);
-          console.log(chal)
-           let doc = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+            console.log(d);
+            process.stdout.write(d)
+            d = JSON.parse(d);
+            console.log(d.timestamp);
+
+            let time = JSON.stringify(d.timestamp);
+            time = time.substr(1, time.length);
+            time = time.substr(0, time.length-1);
+
+            let encryptedTime = encrypt(time);
+            console.log(encryptedTime);
+
+            let chal = JSON.stringify(d.challenge);
+            chal = chal.substr(1, chal.length);
+            chal = chal.substr(0, chal.length-1);
+            console.log(chal)
+
+            let doc = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
            <ns3:InitSessionTokenRequest
                xmlns="http://ksef.mf.gov.pl/schema/gtw/svc/online/types/2021/10/01/0001"
                xmlns:ns2="http://ksef.mf.gov.pl/schema/gtw/svc/types/2021/10/01/0001"
@@ -86,24 +90,19 @@ const encrypt = require('../security/crypto');
            </ns3:InitSessionTokenRequest>
             `;
             
-          fs.writeFile('./Doc/initSessionToken.xml', doc, function(err){
-            if (err) 
-            return console.log(err);
-            console.log('Stworzono dokument');
-            
-          });
-        
-          
-    })
-   
-    })
+            fs.writeFile('./Doc/initSessionToken.xml', doc, function(err){
+                if (err) 
+                return console.log(err);
+                console.log('Stworzono dokument');
 
+            });
+        })
+    })
     req.on('error', error => {
         console.error(error);
       });
-    
     req.write(data);
     req.end();
-    return "/authChallange done";
 
-    }
+    return "/authChallange done";
+}
