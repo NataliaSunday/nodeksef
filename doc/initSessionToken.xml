@@ -4,8 +4,8 @@
                xmlns:ns2="http://ksef.mf.gov.pl/schema/gtw/svc/types/2021/10/01/0001"
                xmlns:ns3="http://ksef.mf.gov.pl/schema/gtw/svc/online/auth/request/2021/10/01/0001">
                <ns3:Context>
-                   <Timestamp>2022-03-17T10:23:21.502Z</Timestamp>
-                   <Challenge>20220317-CR-5AF2177A32-B8B948E2E7-64</Challenge>
+                   <Timestamp>2022-03-17T10:33:46.418Z</Timestamp>
+                   <Challenge>20220317-CR-76D83C9D48-B4CBB8AA84-09</Challenge>
                    <Identifier xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:SubjectIdentifierByCompanyType">
                        <ns2:Identifier>1111111111</ns2:Identifier>
                    </Identifier>
@@ -41,7 +41,7 @@
                     <ns2:Padding>PKCS#7</ns2:Padding>
                 </ns2:EncryptionAlgorithmData>
                 </Encryption>
-                   <Token>Dp0QWfcP8aqjGExyN1zXR7mzZmTBeDXD9xaSodyWBH+kHSnNx81uT1E175RQvWD9uXh022JOwLbKPFT8aKk4P7x3WrUIU4kq2WV4l9a2rYTOLk97PlY/O3x/xdcQhrgFRNzCDhQXv3NJRBFpMLm7VVuOxGqkxYwZINllPdkdZ5zE2Eb2P3SVUzZu8w3CI1Dl3MKww25UIl3pUPPfdTrj8BNvQVYtCH0DrIpNmd/FvZ/IXFAZ8X9Gcs/fLEjhUqZaI2vYOop1nZrG7Z/8jNZUKX6KEqdIgULlNuFBRPX2S5K9FJ0DpmcsOzeI5t07CMNkmA31scdp2nPMzdsEu0N4vA==</Token>
+                   <Token>A+w0n+atZa0GRvoW1mwGndAOiUAAVFsC6AzGKJ6x8XgI8Fm5K4pCMzramG+Ha/e/f8sHyT/5Bebfb0oyMGDStqPQQ+hGqgQftnuEm02jy5mzHnq804wKRQhwh0vM6wyQBrfL8rA4wmMbjZNY/DAUTI3ClBQH1tiZS0wBec8+phGKnQAOSXunM3WkcnR3XS/5XFg6bmKDzF7lDVkGtBEnTt+FU8okWORuOff9z1GTRHlXCQwCKUfUNHXkEWC6ep+4knzZj05by1PZQu+/OMTceJ/S66ZwEC/26m8/hU0sIyhGEFBQX28rRnlIs9/4MMs1I9jVs7n096LLRdhZxAbuwg==</Token>
                </ns3:Context>
            </ns3:InitSessionTokenRequest>
             

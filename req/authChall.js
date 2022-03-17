@@ -1,7 +1,6 @@
 const https = require('https');
-const express = require('express');
 const fs = require('fs');
-const encrypt = require('./crypto');
+const encrypt = require('../security/crypto');
 
     const data = JSON.stringify({
         "contextIdentifier": {
@@ -105,7 +104,7 @@ const encrypt = require('./crypto');
     
     req.write(data);
     req.end();
-    return "lolo";
+    return "/authChallange done";
 
     }
       
