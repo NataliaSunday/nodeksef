@@ -9,8 +9,7 @@ app.get('/', (req, res) => {
     res.send('Heloha');
 })
 app.get('/iksde', (req, res) =>{
-    authChal();
-    console.log('s');
+  
     res.send(authChal());
 
 } )
