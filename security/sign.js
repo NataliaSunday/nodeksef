@@ -1,3 +1,4 @@
+/*
 var xadesjs = require("xadesjs");
 var { Crypto } = require("@peculiar/webcrypto");
 const fs = require('fs');
@@ -44,7 +45,7 @@ function SignXml(xmlString, keys, algorithm) {
             var signedXml = new xadesjs.SignedXml();
 
             return signedXml.Sign(               // Signing document
-                algorithm,                              // algorithm
+                algorithm,                              // algorithm https://4programmers.net/Forum/Nietuzinkowe_tematy/355933-ksef_krajowy_system_e_faktur?page=12
                 keys.privateKey,                        // key
                 xmlDoc,                                 // document
                 {                                       // options
@@ -63,3 +64,36 @@ function SignXml(xmlString, keys, algorithm) {
             })
             .then(signature => signature.toString());
 }
+
+"use strict";
+
+let signature = new XmlDSigJs.SignedXml();
+
+signature.Sign(                                  // Signing document
+    { name: "RSASSA-PKCS1-v1_5" },                        // algorithm 
+    keys.privateKey,                                      // key 
+    XmlDSigJs.Parse(xml),                                 // document
+    {                                                     // options
+        keyValue: keys.publicKey,
+        references: [
+            { hash: "SHA-512", transforms: ["enveloped", "c14n"] },
+        ]
+    })
+    .then(() => {
+        console.log(signature.toString());       // <xml> document with signature
+    })
+    .catch(e => console.log(e));
+
+    
+var SignedXml = require('xml-crypto').SignedXml	  
+, fs = require('fs');
+require( 'xml-crypto' ).SignedXml.enableHMAC();
+
+var xml = fs.readFileSync("../doc/initSessionSigned.xml");
+
+var sig = new SignedXml()
+sig.addReference("//*[local-name(.)='book']")    
+sig.signingKey = fs.readFileSync("../keys/openssl/certificate.crt")
+sig.computeSignature(xml)
+fs.writeFileSync("signed.xml", sig.getSignedXml())
+/*/
