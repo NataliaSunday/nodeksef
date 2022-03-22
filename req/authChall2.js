@@ -34,8 +34,7 @@ module.exports = function authChal(){
             time =  time.substr(1, time.length);
             time =  time.substr(0, time.length-1);
        
-            let signed = sign();
-            console.log(signed);
+           
 
             let chal = JSON.stringify(d.challenge);
             chal =  chal.substr(1, chal.length);

@@ -1,0 +1,89 @@
+<ns3:InitSessionSignedRequest xmlns="http://ksef.mf.gov.pl/schema/gtw/svc/online/types/2021/10/01/0001" xmlns:ns2="http://ksef.mf.gov.pl/schema/gtw/svc/types/2021/10/01/0001" xmlns:ns3="http://ksef.mf.gov.pl/schema/gtw/svc/online/auth/request/2021/10/01/0001"><ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+<ds:SignedInfo>
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315#WithComments"></ds:CanonicalizationMethod>
+<ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></ds:SignatureMethod>
+<ds:Reference URI="">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"></ds:Transform>
+<ds:Transform Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315#WithComments"></ds:Transform>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"></ds:DigestMethod>
+<ds:DigestValue>/PQy0z3c5e2qLIITACab5bm9NM4=</ds:DigestValue>
+</ds:Reference>
+</ds:SignedInfo>
+<ds:SignatureValue>
+eoulRMWsgSJDxNbKTLi1iwICsZg8udRBeWM4RPXH2ruw74yqTDnxG+fN0XXf3g0gI6gdNTy/cxJd
+4JW4QCiPPQd0O135dWD0W993HwnZkvRbuGVHmha5RPYTXVRIqZiAd/+tDRJUmi14ZrEyyimNpt5h
+XJnehlQmAfMOU7fkZnSVlHYRBMEImIrAagHRb6iY4kazumVjEIcAgVdFB+IAF0tsGcZ/dM53aStQ
+0RyuavLLyWk2y0CLGs1UkqTXl1fDxo1MLoj5qb2C+8VVcLcWDjU0Qao37ke4o0ONY08GqC2/DQfT
+JmFTszWnXIWqhG0hOyaPu+91ZDKUC9Gs5riqYyrTfZ5P2zyoDt5rzg2nef5lSBtrDONhwwkLjB89
+tXiyXBI5JFKtFNNAMHop93nqHjTLeYTy3Ye3xGRVsbjCqoy6T8Kk4rZAMY51JWJkUan5/leeU2kI
+jORelnvTSjzxz9JsXUe/v/7QUj8NxHX7WL3DbPl+a6cDt7oyLUxamhLdzRR2a4AVyjba4T5SAOKj
+zejJqgadkheAEvkL3QSb0kVkJSh38MG7d0L85ifM2hQk0BrJ3vA3txW8PJk74elUD2xnlAPE1y2G
+jFyc09Z4N7oE+6KqHCJUAvSuWOhNDHknWCl5HuVnvAoiLR5snxQJE5Ii4tCwnvGh7RfkIjOc7X8=
+</ds:SignatureValue>
+<ds:KeyInfo>
+<ds:X509Data>
+<ds:X509Certificate>
+MIIDxzCCAq8CFFzFQ2aAXbCjY2cDrATP/UWWoau0MA0GCSqGSIb3DQEBDQUAMIGfMQswCQYDVQQG
+EwJQTDESMBAGA1UECAwJTHViZWxza2llMQ8wDQYDVQQHDAZMdWJsaW4xDjAMBgNVBAoMBXNraWNo
+MQwwCgYDVQQLDANFQ00xFDASBgNVBAMMC3Rlc3Qga2xpZW50MRwwGgYJKoZIhvcNAQkBFg10dXB0
+dXNAeHh4LnBsMRkwFwYDVQRhDBBWQVRQTC0xMjM0NTY3ODkwMB4XDTIyMDMyMTExMjMyMFoXDTIy
+MDQyMDExMjMyMFowgZ8xCzAJBgNVBAYTAlBMMRIwEAYDVQQIDAlMdWJlbHNraWUxDzANBgNVBAcM
+Bkx1YmxpbjEOMAwGA1UECgwFc2tpY2gxDDAKBgNVBAsMA0VDTTEUMBIGA1UEAwwLdGVzdCBrbGll
+bnQxHDAaBgkqhkiG9w0BCQEWDXR1cHR1c0B4eHgucGwxGTAXBgNVBGEMEFZBVFBMLTEyMzQ1Njc4
+OTAwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDMwVtpvQsd0WP27f+vhIDjVFahVR5t
+tdiudRY7pY4xncp4U2LW9CWaMkiPky6EdlfQZK7SUd6uzjtOZGN8sjuDJB45H1HQYSsxZOPFkmm8
+MQ+zXoa7zOIOfySKsUo43W0qilsBBLksuTFmFFBs9DNRpHU7N69SFFQlX16avn8WSbN5OBK+0qq1
+EFxEkyYtOjxe91Q2n25H6hTU48T1LVpOHXsUcFU6TYxfn9s5GjA5lNLb/wXpIRI+WEnv6TYhecin
+3WiB2Q9ICBYk/ReyiWpSbNKxBas1qUc+bECJswRHd09kt+vNtznSY+IUWSeJVTLWpmwVf7xdoQix
+GFdTm523AgMBAAEwDQYJKoZIhvcNAQENBQADggEBAJvX9/KHkZJ7XUdKIBXwRDSx2bxdURawEm3o
+dzqDs4a0AJnRdocROmnmoeBEojspm5BL48WFmvTalV6FxHgmkzdItRa+D0yRRLwNLAvwVPTTeLAj
+Zu+3XNvLdOpqHjkQZHzqHm5nkLqVcaI02NhsL4snMUuexhfLvVrgfGQ8K1XXFQDNDRBmYFSAjUoS
+gYWfhiK5EXmC8clL0Nq5q2HynJ92UvEWcVAj9UyckyjVVXBg5neLpLHbmVLLd1wZ6bmtqZKG4uCR
+1WVAdvZAdLz9/w6GN4niFWJU62J8hZ6Y7AhtfvfI2MJXaErSvyPcPnXv8HJxZZpbg9tL7VBnDGpG
+G4Y=
+</ds:X509Certificate>
+</ds:X509Data>
+</ds:KeyInfo>
+</ds:Signature>
+               <ns3:Context>
+                   <Challenge>20220322-CR-EC67DC1827-7B1FE4CA5C-1F</Challenge>
+                   <Identifier xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:SubjectIdentifierByCompanyType">
+                       <ns2:Identifier>1111111111</ns2:Identifier>
+                   </Identifier>
+                   <DocumentType>
+                       <ns2:Service>KSeF</ns2:Service>
+                       <ns2:FormCode>
+                           <ns2:SystemCode>FA (1)</ns2:SystemCode>
+                           <ns2:SchemaVersion>1-0E</ns2:SchemaVersion>
+                           <ns2:TargetNamespace>http://crd.gov.pl/wzor/2021/11/29/11089/</ns2:TargetNamespace>
+                           <ns2:Value>FA</ns2:Value>
+                       </ns2:FormCode>
+                   </DocumentType>
+                   <Encryption>
+                       <ns2:EncryptionKey>
+                           <ns2:Encoding>Base64</ns2:Encoding>
+                           <ns2:Algorithm>AES</ns2:Algorithm>
+                           <ns2:Size>256</ns2:Size>
+                           <ns2:Value>H2+YWam2q/6GJafnC+qbkWDeNvZb8brpUkXw5cstNP5GnK+DGyIIwgCS7kXJXa2X8BOh9OWJXry5l7wZMq+WCXCif1+pQ+5+FbJlm16A3PB5BNy2S6cBubS2Q+kdk5FJs7pFMt6U+6jEPKMrmxi0D3nFyYK6cKmVZFQHa/4faj7qa70KEpyL49WJxdHGbQfAoe05z5OKyiZZftz+oGJVystA+fCLufVhiZ7gIuZLov8aamO1ghum1vYsG7nqJ1OrmUVrpgqv5jCqdMo+4FqG9XMKntgGsmydskjPiSxj1mF4+qNAP6neINrDrG+M1lCg/VBhrdnTAGnyfsODfohbiw==</ns2:Value>
+                       </ns2:EncryptionKey>
+                       <ns2:EncryptionInitializationVector>
+                           <ns2:Encoding>Base64</ns2:Encoding>
+                           <ns2:Bytes>16</ns2:Bytes>
+                           <ns2:Value>5+DjwCfRIQPaX1Rj3jMAWw==</ns2:Value>
+                       </ns2:EncryptionInitializationVector>
+                       <ns2:EncryptionAlgorithmKey>
+                           <ns2:Algorithm>RSA</ns2:Algorithm>
+                           <ns2:Mode>ECB</ns2:Mode>
+                           <ns2:Padding>PKCS#1</ns2:Padding>
+                       </ns2:EncryptionAlgorithmKey>
+                       <ns2:EncryptionAlgorithmData>
+                           <ns2:Algorithm>AES</ns2:Algorithm>
+                           <ns2:Mode>CBC</ns2:Mode>
+                           <ns2:Padding>PKCS#7</ns2:Padding>
+                       </ns2:EncryptionAlgorithmData>
+                   </Encryption>
+                   <Type>SerialNumber</Type>
+               </ns3:Context>
+           </ns3:InitSessionSignedRequest>
