@@ -2,6 +2,64 @@ const xadesjs = require('xadesjs');
 const { Crypto } = require('@peculiar/webcrypto');
 
 const fs = require('fs');
+const { Certificate } = require('crypto');
+
+xadesjs.Application.setEngine("NodeJS", new Crypto());
+console.log('lol');
+
+
+module.exports = function letSigned(doc){
+        
+    let myPrivateKey, myPublicKey;
+    xadesjs.Application.crypto.subtle.generateKey({
+        name: "RSASSA-PKCS1-v1_5",
+        modulusLength: 1024,
+        publicExponent: new Uint8Array([ 1, 0 , 1]),
+        hash: { name: 'SHA-256'}
+    },false,
+    ['sign' , 'verify']
+    ).then(function (keyPair) {
+        myPrivateKey = keyPair.privateKey;
+        myPublicKey = keyPair.publicKey;
+        console.log("Stworzono klucz");   
+        let xmlString = doc;
+    return SignXml(xmlString, keyPair, {name: 'RSASSA-PKCS1-v1_5', hash: { name: "SHA-256" } })})
+        .then(function (signedDocument) {
+            console.log("Signed document:\n\n", signedDocument);
+           
+
+        })
+        .catch(function (e) {
+            console.error(e);
+        });
+    }
+
+    function SignXml(xmlFileContent, keys, algorithm) {
+     return Promise.resolve()
+        .then( () => {
+            var xmlDoc = xadesjs.Parse(xmlFileContent);
+            let signedXml = new xadesjs.SignedXml();
+
+            return signedXml.Sign(
+                algorithm,
+                keys.privateKey,
+                xmlDoc,{
+                    keyValue: keys.publicKey,
+                    references: [
+                        { hash: "SHA-256", transforms: ["enveloped"] }
+                    ],
+                
+                signingCertificate: 'MIIC5jCCAc4CAQAwgaAxCzAJBgNVBAYTAlBMMRIwEAYDVQQIDAlMdWJlbHNraWUxDzANBgNVBAcMBkx1YmxpbjEOMAwGA1UECgwFc2tpY2gxDDAKBgNVBAsMA0VDTTEUMBIGA1UEAwwLdGVzdCBrbGllbnQxHTAbBgkqhkiG9w0BCQEWDm5hdGFsaWFAeHh4LnBsMRkwFwYDVQRhDBBWQVRQTC00MjU3MDA3NjkwMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzXKm6KX87PRwZ1WVzeAbRW9Yj5CswGQnYotjYefwv9O+5cYcP9zf4owJ2Jnht8VTQbJjvqM5ajRa02cKRtkfa/WqwZteD6KTsCfjc4OUtqWGjItvGtBvRqfjx+Dz5Bu5VKowYBa8mjKL5NK5V8/jt0hcXavu2PVpiW4XzYI3PG3GkqxQINHlFQjYgMEJropXJgL0p1I+sNXXuBhbuWJpa9K/312Dh9j4JdfjKxsOul0OQGFsuIoYVl7aYN6ktMkGvX9ZwdNsBvBLe6CPu2jKEanx06rs7c3ouAxpBwYRCf2PX1IsZhFjGvi0jZo7WF0II5WD3dGm3kcDEWSteWUeQQIDAQABoAAwDQYJKoZIhvcNAQELBQADggEBAJlHoAMLyV4Mp/rsKBHg2MSDSZBt0jFmGkdRO466I5pOE3ZXVyHwRTTM+zTeaQMGZIDXVnyn3IyQRoagoi5FfsGk6RTweW/um4sv6SwXIYJpzHTfJlT8Zn7sU1WEj1Vz21wwNiNM6hqqXjSN4WlbKcCDajKWk33qfWPd6p2N4Jmp+76gNpNkcDhOXK0VC2wtmAEUEhoDc/sPC3w9Mi816Hy1jur3yesXxXgcJ9AIewPjTCxZyNLKPXMiM3rL3OsUmWIGwzlSxTvHkDBmrmCZbPxC3BRnvTMnTajt0v61ImN+jWRzHGfy6Ub/mhvyyuTkf6xU/y9CiByCvJlGlTeFIhs=',
+                })
+    })
+            .then(signature => signature.toString());
+    }
+
+
+/*const xadesjs = require('xadesjs');
+const { Crypto } = require('@peculiar/webcrypto');
+
+const fs = require('fs');
 const { Signature } = require('xmldsigjs');
 
 xadesjs.Application.setEngine("NodeJS", new Crypto());
@@ -56,7 +114,7 @@ module.exports = function SignXml(xmlFileContent, keys, algorithm) {
             
         }
 
-/*
+
 
 SignedXml.Sign(algorithm: Algorithm, key: CryptoKey, data: Document, options?: OptionsXAdES): PromiseLike<Signature>;
 

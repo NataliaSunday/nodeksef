@@ -1,7 +1,6 @@
 
 const nodeRSA = require('node-rsa');
 const fs = require('fs');
-const key = new nodeRSA({b:1024});
 
 module.exports =  function encrypt(time){
 
@@ -12,12 +11,11 @@ const publicKeyKSEF = fs.readFileSync("./Keys/publicKeyKSEF.pem");
 let key_public = new nodeRSA(publicKeyKSEF);
 
 
-
 let encryptedString = key_public.encrypt(time, 'base64');
 console.log(encryptedString);
 
 return encryptedString;
-  
+
 }
 /*
 const crypto = require('crypto');
