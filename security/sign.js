@@ -19,14 +19,26 @@ xadesjs.Application.crypto.subtle.generateKey({
     myPublicKey = keyPair.publicKey;
     console.log("Stworzono klucz");
 
-    let xmlString = fs.readFileSync('../doc/initSessionSign.xml');
-    return SignXml(xmlString, keyPair, {name: 'RSASSA-PKCS1-v1_5', hash: { name: "SHA-256" } });
+  
+    let xmlString = '<player bats="left" id="10012" throws="right">\n\t<!-- Here\'s a comment -->\n\t<name>Alfonso Soriano</name>\n\t<position>2B</position>\n\t<team>New York Yankees</team>\n</player>';
+    return SignXml(xmlString, keyPair, {name: 'RSASSA-PKCS1-v1_5', hash: { name: "SHA-256" } })})
+    .then(function (signedDocument) {
+        console.log("Signed document:\n\n", signedDocument);
+        fs.writeFile('../doc/initSessionSigned.xml', signedDocument, function(err){
+            if (err) 
+            return console.log(err);
+            console.log('Stworzono dokument');
+
+    })
+    .catch(function (e) {
+        console.error(e);
+    });
 })
 
 function SignXml(xmlFileContent, keys, algorithm) {
     return Promise.resolve()
         .then( () => {
-            let xmlDoc = xadesjs.Stringify(xmlFileContent);
+            var xmlDoc = xadesjs.Parse(xmlFileContent);
             let signedXml = new xadesjs.SignedXml();
 
             return signedXml.Sign(
