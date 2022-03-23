@@ -2,39 +2,39 @@ const xadesjs = require('xadesjs');
 const { Crypto } = require('@peculiar/webcrypto');
 
 const fs = require('fs');
+const { Signature } = require('xmldsigjs');
 
 xadesjs.Application.setEngine("NodeJS", new Crypto());
 console.log('lol');
 
-
-module.exports = function letSigned(doc){
-        
-    let myPrivateKey, myPublicKey;
-    xadesjs.Application.crypto.subtle.generateKey({
-        name: "RSASSA-PKCS1-v1_5",
-        modulusLength: 1024,
-        publicExponent: new Uint8Array([ 1, 0 , 1]),
-        hash: { name: 'SHA-256'}
-    },false,
-    ['sign' , 'verify']
-    ).then(function (keyPair) {
-        myPrivateKey = keyPair.privateKey;
-        myPublicKey = keyPair.publicKey;
-        console.log("Stworzono klucz");   
-        let xmlString = doc;
-    return SignXml(xmlString, keyPair, {name: 'RSASSA-PKCS1-v1_5', hash: { name: "SHA-256" } })})
-        .then(function (signedDocument) {
-            console.log("Signed document:\n\n", signedDocument);
-           
-
+module.exports = function createKey() {
+    
+        let myPrivateKey, myPublicKey;
+        xadesjs.Application.crypto.subtle.generateKey({
+            name: "RSASSA-PKCS1-v1_5",
+            modulusLength: 1024,
+            publicExponent: new Uint8Array([ 1, 0 , 1]),
+            hash: { name: 'SHA-256'}
+        },false,
+        ['sign' , 'verify']
+        ).then(function (keyPair) {
+            myPrivateKey = keyPair.privateKey;
+            myPublicKey = keyPair.publicKey;
+            console.log("Stworzono klucz");
+        return keyPair;
+          
         })
-        .catch(function (e) {
-            console.error(e);
-        });
-    }
+            .catch(function (e) {
+                console.error(e);
+            });
+        
+    
+   
+}
 
-    function SignXml(xmlFileContent, keys, algorithm) {
-     return Promise.resolve()
+
+module.exports = function SignXml(xmlFileContent, keys, algorithm) {
+    return Promise.resolve()
         .then( () => {
             var xmlDoc = xadesjs.Parse(xmlFileContent);
             let signedXml = new xadesjs.SignedXml();
@@ -49,8 +49,12 @@ module.exports = function letSigned(doc){
                     ],
                 })
             })
-            .then(signature => signature.toString());
-    }
+            .then(function(){
+            signature = toString(signature);
+            console.log(signature);
+            });
+            
+        }
 
 /*
 
