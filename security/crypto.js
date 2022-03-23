@@ -6,11 +6,11 @@ const key = new nodeRSA({b:1024});
 module.exports =  function encrypt(time){
 
 
-const publicKey = fs.readFileSync("./Keys/publicKeyKSEF.pem");
-const privateKey = fs.readFileSync("./Keys/privateKey.pem");
+const publicKeyKSEF = fs.readFileSync("./Keys/publicKeyKSEF.pem");
 
-let key_public = new nodeRSA(publicKey);
-let key_private = new nodeRSA(privateKey);
+
+let key_public = new nodeRSA(publicKeyKSEF);
+
 
 
 let encryptedString = key_public.encrypt(time, 'base64');

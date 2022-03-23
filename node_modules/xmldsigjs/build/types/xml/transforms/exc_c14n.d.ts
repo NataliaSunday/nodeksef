@@ -1,0 +1,30 @@
+import { XmlCanonicalizer } from "../../canonicalizer";
+import { Transform } from "../transform";
+/**
+ * Represents the exclusive C14N XML canonicalization transform for a digital signature
+ * as defined by the World Wide Web Consortium (W3C), without comments.
+ */
+export declare class XmlDsigExcC14NTransform extends Transform {
+    Algorithm: string;
+    protected xmlCanonicalizer: XmlCanonicalizer;
+    /**
+     * Gets or sets a string that contains namespace prefixes to canonicalize
+     * using the standard canonicalization algorithm.
+     */
+    get InclusiveNamespacesPrefixList(): string;
+    set InclusiveNamespacesPrefixList(value: string);
+    LoadXml(param: string | Element): void;
+    /**
+     * Returns the output of the current XmlDsigExcC14NTransform object
+     */
+    GetOutput(): string;
+    private setInclusiveNamespacesElement;
+}
+/**
+ * Represents the exclusive C14N XML canonicalization transform for a digital signature
+ * as defined by the World Wide Web Consortium (W3C), with comments.
+ */
+export declare class XmlDsigExcC14NWithCommentsTransform extends XmlDsigExcC14NTransform {
+    Algorithm: string;
+    protected xmlCanonicalizer: XmlCanonicalizer;
+}

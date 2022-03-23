@@ -1,4 +1,51 @@
+const xadesjs = require('xadesjs');
+const { Crypto } = require('@peculiar/webcrypto');
+
+const fs = require('fs');
+
+xadesjs.Application.setEngine("NodeJS", new Crypto());
+console.log('lol');
+
+let myPrivateKey, myPublicKey;
+xadesjs.Application.crypto.subtle.generateKey({
+    name: "RSASSA-PKCS1-v1_5",
+    modulusLength: 1024,
+    publicExponent: new Uint8Array([ 1, 0 , 1]),
+    hash: { name: 'SHA-256'}
+},false,
+['sign' , 'verify']
+).then(function (keyPair) {
+    myPrivateKey = keyPair.privateKey;
+    myPublicKey = keyPair.publicKey;
+    console.log("Stworzono klucz");
+
+    let xmlString = fs.readFileSync('../doc/initSessionSign.xml');
+    return SignXml(xmlString, keyPair, {name: 'RSASSA-PKCS1-v1_5', hash: { name: "SHA-256" } });
+})
+
+function SignXml(xmlFileContent, keys, algorithm) {
+    return Promise.resolve()
+        .then( () => {
+            let xmlDoc = xadesjs.Stringify(xmlFileContent);
+            let signedXml = new xadesjs.SignedXml();
+
+            return signedXml.Sign(
+                algorithm,
+                keys.privateKey,
+                xmlDoc,{
+                    keyValue: keys.publicKey,
+                    references: [
+                        { hash: "SHA-256", transforms: ["enveloped"] }
+                    ],
+                })
+            })
+            .then(signature => signature.toString());
+}
 /*
+
+SignedXml.Sign(algorithm: Algorithm, key: CryptoKey, data: Document, options?: OptionsXAdES): PromiseLike<Signature>;
+
+
 var xadesjs = require("xadesjs");
 var { Crypto } = require("@peculiar/webcrypto");
 const fs = require('fs');
