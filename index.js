@@ -6,7 +6,7 @@ const authChal = require('./req/authChall');
 const authChal2 = require('./req/authChall2');
 
 app.get('/', (req, res) => {
-    res.send('Heloha');
+    res.send('Helohdsdddda');
 })
 app.get('/authChallange', (req, res) =>{
     res.send(authChal());
