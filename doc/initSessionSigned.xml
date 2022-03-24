@@ -1,47 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
-            <ns3:InitSessionSignedRequest
-                xmlns="http://ksef.mf.gov.pl/schema/gtw/svc/online/types/2021/10/01/0001"
-                xmlns:ns2="http://ksef.mf.gov.pl/schema/gtw/svc/types/2021/10/01/0001"
-                xmlns:ns3="http://ksef.mf.gov.pl/schema/gtw/svc/online/auth/request/2021/10/01/0001">
-                <ns3:Context>
-                    <Challenge>20220324-CR-8EE176541E-DEE6D3245F-18</Challenge>
-                    <Identifier xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:SubjectIdentifierByCompanyType">
-                        <ns2:Identifier>1111111111</ns2:Identifier>
-                    </Identifier>
-                    <DocumentType>
-                        <ns2:Service>KSeF</ns2:Service>
-                        <ns2:FormCode>
-                            <ns2:SystemCode>FA (1)</ns2:SystemCode>
-                            <ns2:SchemaVersion>1-0E</ns2:SchemaVersion>
-                            <ns2:TargetNamespace>http://crd.gov.pl/wzor/2021/11/29/11089/</ns2:TargetNamespace>
-                            <ns2:Value>FA</ns2:Value>
-                        </ns2:FormCode>
-                    </DocumentType>
-                    <Encryption>
-                        <ns2:EncryptionKey>
-                            <ns2:Encoding>Base64</ns2:Encoding>
-                            <ns2:Algorithm>AES</ns2:Algorithm>
-                            <ns2:Size>256</ns2:Size>
-                            <ns2:Value>H2+YWam2q/6GJafnC+qbkWDeNvZb8brpUkXw5cstNP5GnK+DGyIIwgCS7kXJXa2X8BOh9OWJXry5l7wZMq+WCXCif1+pQ+5+FbJlm16A3PB5BNy2S6cBubS2Q+kdk5FJs7pFMt6U+6jEPKMrmxi0D3nFyYK6cKmVZFQHa/4faj7qa70KEpyL49WJxdHGbQfAoe05z5OKyiZZftz+oGJVystA+fCLufVhiZ7gIuZLov8aamO1ghum1vYsG7nqJ1OrmUVrpgqv5jCqdMo+4FqG9XMKntgGsmydskjPiSxj1mF4+qNAP6neINrDrG+M1lCg/VBhrdnTAGnyfsODfohbiw==</ns2:Value>
-                        </ns2:EncryptionKey>
-                        <ns2:EncryptionInitializationVector>
-                            <ns2:Encoding>Base64</ns2:Encoding>
-                            <ns2:Bytes>16</ns2:Bytes>
-                            <ns2:Value>5+DjwCfRIQPaX1Rj3jMAWw==</ns2:Value>
-                        </ns2:EncryptionInitializationVector>
-                        <ns2:EncryptionAlgorithmKey>
-                            <ns2:Algorithm>RSA</ns2:Algorithm>
-                            <ns2:Mode>ECB</ns2:Mode>
-                            <ns2:Padding>PKCS#1</ns2:Padding>
-                        </ns2:EncryptionAlgorithmKey>
-                        <ns2:EncryptionAlgorithmData>
-                            <ns2:Algorithm>AES</ns2:Algorithm>
-                            <ns2:Mode>CBC</ns2:Mode>
-                            <ns2:Padding>PKCS#7</ns2:Padding>
-                        </ns2:EncryptionAlgorithmData>
-                    </Encryption>
-                    <Type>SerialNumber</Type>
-                </ns3:Context> 
-                undefined
-            </ns3:InitSessionSignedRequest>           
-             
+<ns3:InitSessionSignedRequest xmlns="http://ksef.mf.gov.pl/schema/gtw/svc/online/types/2021/10/01/0001" xmlns:ns2="http://ksef.mf.gov.pl/schema/gtw/svc/types/2021/10/01/0001" xmlns:ns3="http://ksef.mf.gov.pl/schema/gtw/svc/online/auth/request/2021/10/01/0001">
+<ns3:Context>
+ <Challenge>20220324-CR-C33A7A3FAA-EA5CFD4F9D-CA</Challenge>
+<Identifier xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:SubjectIdentifierByCompanyType">
+<ns2:Identifier>1111111111</ns2:Identifier>
+</Identifier>
+<DocumentType>
+<ns2:Service>KSeF</ns2:Service>
+<ns2:FormCode>
+<ns2:SystemCode>FA (1)</ns2:SystemCode>
+<ns2:SchemaVersion>1-0E</ns2:SchemaVersion>
+<ns2:TargetNamespace>http://crd.gov.pl/wzor/2021/11/29/11089/</ns2:TargetNamespace>
+<ns2:Value>FA</ns2:Value>
+</ns2:FormCode>
+</DocumentType>
+<Encryption>
+<ns2:EncryptionKey>
+<ns2:Encoding>Base64</ns2:Encoding>
+<ns2:Algorithm>AES</ns2:Algorithm>
+<ns2:Size>256</ns2:Size>
+<ns2:Value>H2+YWam2q/6GJafnC+qbkWDeNvZb8brpUkXw5cstNP5GnK+DGyIIwgCS7kXJXa2X8BOh9OWJXry5l7wZMq+WCXCif1+pQ+5+FbJlm16A3PB5BNy2S6cBubS2Q+kdk5FJs7pFMt6U+6jEPKMrmxi0D3nFyYK6cKmVZFQHa/4faj7qa70KEpyL49WJxdHGbQfAoe05z5OKyiZZftz+oGJVystA+fCLufVhiZ7gIuZLov8aamO1ghum1vYsG7nqJ1OrmUVrpgqv5jCqdMo+4FqG9XMKntgGsmydskjPiSxj1mF4+qNAP6neINrDrG+M1lCg/VBhrdnTAGnyfsODfohbiw==</ns2:Value>
+</ns2:EncryptionKey>
+<ns2:EncryptionInitializationVector>
+<ns2:Encoding>Base64</ns2:Encoding>
+<ns2:Bytes>16</ns2:Bytes>
+<ns2:Value>5+DjwCfRIQPaX1Rj3jMAWw==</ns2:Value>
+</ns2:EncryptionInitializationVector>
+<ns2:EncryptionAlgorithmKey>
+<ns2:Algorithm>RSA</ns2:Algorithm>
+<ns2:Mode>ECB</ns2:Mode>
+<ns2:Padding>PKCS#1</ns2:Padding>
+</ns2:EncryptionAlgorithmKey>
+<ns2:EncryptionAlgorithmData>
+<ns2:Algorithm>AES</ns2:Algorithm>
+<ns2:Mode>CBC</ns2:Mode>
+<ns2:Padding>PKCS#7</ns2:Padding>
+</ns2:EncryptionAlgorithmData>
+</Encryption>
+<Type>SerialNumber</Type>
+</ns3:Context>
+ <ds:Signature Id="id-a836868bd567" xmlns:ds="http://www.w3.org/2000/09/xmldsig#"><ds:SignedInfo><ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/><ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/><ds:Reference><ds:Transforms><ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/><ds:Transform Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/></ds:Transforms><ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/><ds:DigestValue>oX1koAD6K3ucmxOW84PNmlr/90X9aSZcBy55PDM4uZM=</ds:DigestValue></ds:Reference><ds:Reference URI="#xades-id-a836868bd567" Type="http://uri.etsi.org/01903#SignedProperties"><ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/><ds:DigestValue>4GhlYcqc+xCv8/8ECVX+0RFeIw1gG/EdiG7HhSD5EXU=</ds:DigestValue></ds:Reference></ds:SignedInfo><ds:SignatureValue>Kcl9gjDGKV8LlWeAiiKDGVB0Z7mQ8XLUV/VpBXcx6RTjr1budnVe97ElCBcAY7n3SzwNfzTkVGZBWuu333ufa7kxei2iMWir0mjVpAi5rgsxY1l8sRrBFXIlrHkSPaJegMrd6pJiETzlppPggJRwPnCUyPI77GS/lkbhH7GyyAydEp936R7dm4XtIUvJJexepHPKKQkaP865aVVVzJsLkteOHIgMZkm9iPCdWmW+y32H6Kq8E85HCVvM6IbDgb+sv00dVOWmIO591u91Eog1AcAACH8kihEnjcPoZ/DN0ay4ye/q8Q+lmOOnkzu4xMm6xKv0KTcGJd49LgThkY5Y1A==</ds:SignatureValue><ds:Object><xades:QualifyingProperties Target="#id-a836868bd567" xmlns:xades="http://uri.etsi.org/01903/v1.3.2#"><xades:SignedProperties Id="xades-id-a836868bd567"><xades:SignedSignatureProperties><xades:SigningTime>2022-03-24T12:02:34.211Z</xades:SigningTime><xades:SigningCertificate><xades:Cert><xades:CertDigest><ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/><ds:DigestValue>u24qTl1TiXZFByFv/fI4NN/0+C1TfFBsOmjfXrJL7qM=</ds:DigestValue></xades:CertDigest><xades:IssuerSerial><ds:X509IssuerName>C=PL, ST=Lubelskie, L=Lublin, O=skich, OU=ECM, CN=test klient, E=natalia@xxx.pl, 2.5.4.97=VATPL-4257007690</ds:X509IssuerName><ds:X509SerialNumber>288146830607119608465039477532506872700385568013</ds:X509SerialNumber></xades:IssuerSerial></xades:Cert></xades:SigningCertificate></xades:SignedSignatureProperties></xades:SignedProperties></xades:QualifyingProperties></ds:Object></ds:Signature></ns3:InitSessionSignedRequest>
