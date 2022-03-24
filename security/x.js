@@ -1,3 +1,3 @@
-const  pairOfKeys = require('./generateKey');
+const  keyPair = require('./generateKey');
 
-console.log( pairOfKeys );
+console.log(  keyPair  );

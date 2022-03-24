@@ -15,7 +15,7 @@ function generateKeyFiles() {
             passphrase: ''
         }
     });
-    fs.writeFileSync('../keys/myPublicublicKey.pem', keyPair.publicKey);  
+    fs.writeFileSync('../keys/myPublicKey.pem', keyPair.publicKey);  
     fs.writeFileSync('../keys/myPrivateKey.pem', keyPair.privateKey);
 
     let pairOfKeys = {
@@ -23,8 +23,8 @@ function generateKeyFiles() {
         privateKey: keyPair.privateKey,
         keyPair: keyPair
     }
-  module.exports = {pairOfKeys};
-    return pairOfKeys;
+  module.exports = {keyPair};
+    return crypto.KeyObject.length;
    
 }
 
