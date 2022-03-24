@@ -1,15 +1,103 @@
+const crypto = require('crypto');
+const fs = require('fs');
 const xadesjs = require('xadesjs');
 const { Crypto } = require('@peculiar/webcrypto');
 
-const fs = require('fs');
-const { Certificate } = require('crypto');
 
 xadesjs.Application.setEngine("NodeJS", new Crypto());
-console.log('lol');
 
+ //---sprawdzanie klucy 
+if((fs.existsSync('./keys/myPublicKey.pem'))&&((fs.existsSync('./keys/myPrivateKey.pem')))){
+console.log('myPublicublicKey i myPrivateKey istnieje');
+
+}else{
+   
+    generateKeyFiles();
+    console.log(generateKeyFiles())
+    console.log('już istnieje');
+}
 
 module.exports = function letSigned(doc){
-        
+    let priv = fs.readFileSync('./keys/myPrivateKey.pem');
+    let privHash = crypto.createHmac('sha256', priv); //hashowanie
+   
+    let pub = fs.readFileSync('./keys/myPublicKey.pem');
+    let pubHash = crypto.createHmac('sha256', pub)
+    let keyPair = {
+        privateKey: privHash,
+        publicKey: pubHash
+    }
+    return SignXml(doc, keyPair, {name: 'RSASSA-PKCS1-v1_5', hash: { name: "SHA-256" } });
+}
+    
+
+   //---generowanie kluczy
+function generateKeyFiles() {
+    const keyPair = crypto.generateKeyPair('rsa', {
+        modulusLength: 1024,
+        publicKeyEncoding: {
+            type: 'spki',
+            format: 'pem'
+        },
+        privateKeyEncoding: {
+            type: 'pkcs8',
+            format: 'pem',
+            cipher: 'aes-256-cbc',
+            passphrase: ''
+        }
+    });
+    fs.writeFileSync('../keys/myPublicKey.pem', keyPair.publicKey);  
+    fs.writeFileSync('../keys/myPrivateKey.pem', keyPair.privateKey);
+
+    return keyPair; 
+}
+
+//--podpisywanie xmla
+function SignXml(xmlFileContent, keys, algorithm) {
+    return Promise.resolve()
+       .then( () => {
+           var xmlDoc = xadesjs.Parse(xmlFileContent);
+           let signedXml = new xadesjs.SignedXml();
+           return signedXml.Sign(
+                algorithm,
+                keys.privateKey,
+                xmlDoc,{
+                   keyValue: keys.publicKey,
+                   references: [
+                    { hash: "SHA-256", transforms: ["enveloped"] }
+                   ],
+               
+               signingCertificate: 'MIIC5jCCAc4CAQAwgaAxCzAJBgNVBAYTAlBMMRIwEAYDVQQIDAlMdWJlbHNraWUxDzANBgNVBAcMBkx1YmxpbjEOMAwGA1UECgwFc2tpY2gxDDAKBgNVBAsMA0VDTTEUMBIGA1UEAwwLdGVzdCBrbGllbnQxHTAbBgkqhkiG9w0BCQEWDm5hdGFsaWFAeHh4LnBsMRkwFwYDVQRhDBBWQVRQTC00MjU3MDA3NjkwMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzXKm6KX87PRwZ1WVzeAbRW9Yj5CswGQnYotjYefwv9O+5cYcP9zf4owJ2Jnht8VTQbJjvqM5ajRa02cKRtkfa/WqwZteD6KTsCfjc4OUtqWGjItvGtBvRqfjx+Dz5Bu5VKowYBa8mjKL5NK5V8/jt0hcXavu2PVpiW4XzYI3PG3GkqxQINHlFQjYgMEJropXJgL0p1I+sNXXuBhbuWJpa9K/312Dh9j4JdfjKxsOul0OQGFsuIoYVl7aYN6ktMkGvX9ZwdNsBvBLe6CPu2jKEanx06rs7c3ouAxpBwYRCf2PX1IsZhFjGvi0jZo7WF0II5WD3dGm3kcDEWSteWUeQQIDAQABoAAwDQYJKoZIhvcNAQELBQADggEBAJlHoAMLyV4Mp/rsKBHg2MSDSZBt0jFmGkdRO466I5pOE3ZXVyHwRTTM+zTeaQMGZIDXVnyn3IyQRoagoi5FfsGk6RTweW/um4sv6SwXIYJpzHTfJlT8Zn7sU1WEj1Vz21wwNiNM6hqqXjSN4WlbKcCDajKWk33qfWPd6p2N4Jmp+76gNpNkcDhOXK0VC2wtmAEUEhoDc/sPC3w9Mi816Hy1jur3yesXxXgcJ9AIewPjTCxZyNLKPXMiM3rL3OsUmWIGwzlSxTvHkDBmrmCZbPxC3BRnvTMnTajt0v61ImN+jWRzHGfy6Ub/mhvyyuTkf6xU/y9CiByCvJlGlTeFIhs=',
+               })
+   })
+           .then(signature => signature.toString()).catch(err => console.log(err));
+           
+   }
+
+
+
+/*
+
+function generateKeyFiles() {
+    const keyPair = crypto.generateKeyPairSync('rsa', {
+        modulusLength: 520,
+        publicKeyEncoding: {
+            type: 'spki',
+            format: 'pem'
+        },
+        privateKeyEncoding: {
+            type: 'pkcs8',
+            format: 'pem',
+            cipher: 'aes-256-cbc',
+            passphrase: ''
+        }
+    });
+    fs.writeFileSync('../keys/myPublicKey.pem', keyPair.publicKey);  
+    fs.writeFileSync('../keys/myPrivateKey.pem', keyPair.privateKey);
+
+    return keyPair; 
+}
+function generateKeyFiles(){
     let myPrivateKey, myPublicKey;
     xadesjs.Application.crypto.subtle.generateKey({
         name: "RSASSA-PKCS1-v1_5",
@@ -21,100 +109,61 @@ module.exports = function letSigned(doc){
     ).then(function (keyPair) {
         myPrivateKey = keyPair.privateKey;
         myPublicKey = keyPair.publicKey;
-        console.log("Stworzono klucz");   
-        let xmlString = doc;
-    return SignXml(xmlString, keyPair, {name: 'RSASSA-PKCS1-v1_5', hash: { name: "SHA-256" } })})
-        .then(function (signedDocument) {
-            console.log("Signed document:\n\n", signedDocument);
-           
+        console.log("Stworzono klucz");
+        fs.writeFileSync('../keys/myPublicKey.pem', keyPair.publicKey);  
+        fs.writeFileSync('../keys/myPrivateKey.pem', keyPair.privateKey);
+    }).catch(err => {
+        console.log(err)
+    })   
+}
 
-        })
-        .catch(function (e) {
-            console.error(e);
-        });
-    }
-
-    function SignXml(xmlFileContent, keys, algorithm) {
-     return Promise.resolve()
-        .then( () => {
-            var xmlDoc = xadesjs.Parse(xmlFileContent);
-            let signedXml = new xadesjs.SignedXml();
-
-            return signedXml.Sign(
-                algorithm,
-                keys.privateKey,
-                xmlDoc,{
-                    keyValue: keys.publicKey,
-                    references: [
-                        { hash: "SHA-256", transforms: ["enveloped"] }
-                    ],
-                
-                signingCertificate: 'MIIC5jCCAc4CAQAwgaAxCzAJBgNVBAYTAlBMMRIwEAYDVQQIDAlMdWJlbHNraWUxDzANBgNVBAcMBkx1YmxpbjEOMAwGA1UECgwFc2tpY2gxDDAKBgNVBAsMA0VDTTEUMBIGA1UEAwwLdGVzdCBrbGllbnQxHTAbBgkqhkiG9w0BCQEWDm5hdGFsaWFAeHh4LnBsMRkwFwYDVQRhDBBWQVRQTC00MjU3MDA3NjkwMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzXKm6KX87PRwZ1WVzeAbRW9Yj5CswGQnYotjYefwv9O+5cYcP9zf4owJ2Jnht8VTQbJjvqM5ajRa02cKRtkfa/WqwZteD6KTsCfjc4OUtqWGjItvGtBvRqfjx+Dz5Bu5VKowYBa8mjKL5NK5V8/jt0hcXavu2PVpiW4XzYI3PG3GkqxQINHlFQjYgMEJropXJgL0p1I+sNXXuBhbuWJpa9K/312Dh9j4JdfjKxsOul0OQGFsuIoYVl7aYN6ktMkGvX9ZwdNsBvBLe6CPu2jKEanx06rs7c3ouAxpBwYRCf2PX1IsZhFjGvi0jZo7WF0II5WD3dGm3kcDEWSteWUeQQIDAQABoAAwDQYJKoZIhvcNAQELBQADggEBAJlHoAMLyV4Mp/rsKBHg2MSDSZBt0jFmGkdRO466I5pOE3ZXVyHwRTTM+zTeaQMGZIDXVnyn3IyQRoagoi5FfsGk6RTweW/um4sv6SwXIYJpzHTfJlT8Zn7sU1WEj1Vz21wwNiNM6hqqXjSN4WlbKcCDajKWk33qfWPd6p2N4Jmp+76gNpNkcDhOXK0VC2wtmAEUEhoDc/sPC3w9Mi816Hy1jur3yesXxXgcJ9AIewPjTCxZyNLKPXMiM3rL3OsUmWIGwzlSxTvHkDBmrmCZbPxC3BRnvTMnTajt0v61ImN+jWRzHGfy6Ub/mhvyyuTkf6xU/y9CiByCvJlGlTeFIhs=',
-                })
-    })
-            .then(signature => signature.toString());
-    }
-
-
-/*const xadesjs = require('xadesjs');
-const { Crypto } = require('@peculiar/webcrypto');
-
+------------const xadesjs = require('xadesjs');
 const fs = require('fs');
-const { Signature } = require('xmldsigjs');
 
 xadesjs.Application.setEngine("NodeJS", new Crypto());
-console.log('lol');
 
-module.exports = function createKey() {
-    
-        let myPrivateKey, myPublicKey;
-        xadesjs.Application.crypto.subtle.generateKey({
-            name: "RSASSA-PKCS1-v1_5",
-            modulusLength: 1024,
-            publicExponent: new Uint8Array([ 1, 0 , 1]),
-            hash: { name: 'SHA-256'}
-        },false,
-        ['sign' , 'verify']
-        ).then(function (keyPair) {
-            myPrivateKey = keyPair.privateKey;
-            myPublicKey = keyPair.publicKey;
-            console.log("Stworzono klucz");
-        return keyPair;
-          
-        })
-            .catch(function (e) {
-                console.error(e);
-            });
-        
-    
-   
+module.exports = function letSigned(doc){
+
+    let myPrivateKey = fs.readFileSync('../keys/myPrivateKey.pem');
+    let myPublicKey = fs.readFileSync('../keys/myPublicKey.pem');
+
+    let xmlString = doc;
+    let signedXml = new xadesjs.SignedXml();
+
+    return SignXml(xmlString, {myPrivateKey, myPublicKey, {name: 'RSASSA-PKCS1-v1_5', hash: { name: "SHA-256" } })})
+    .then(function (signedDocument) {
+        console.log("Signed document:\n\n", signedDocument);
+       
+
+    })
+    .catch(function (e) {
+        console.error(e);
+    });
+
 }
 
 
-module.exports = function SignXml(xmlFileContent, keys, algorithm) {
+function SignXml(xmlFileContent, keys, algorithm) {
     return Promise.resolve()
-        .then( () => {
-            var xmlDoc = xadesjs.Parse(xmlFileContent);
-            let signedXml = new xadesjs.SignedXml();
+       .then( () => {
+           var xmlDoc = xadesjs.Parse(xmlFileContent);
+           let signedXml = new xadesjs.SignedXml();
 
-            return signedXml.Sign(
-                algorithm,
-                keys.privateKey,
-                xmlDoc,{
-                    keyValue: keys.publicKey,
-                    references: [
-                        { hash: "SHA-256", transforms: ["enveloped"] }
-                    ],
-                })
-            })
-            .then(function(){
-            signature = toString(signature);
-            console.log(signature);
-            });
-            
-        }
-
-
+           return signedXml.Sign(
+               algorithm,
+               keys.privateKey,
+               xmlDoc,{
+                   keyValue: keys.publicKey,
+                   references: [
+                       { hash: "SHA-256", transforms: ["enveloped"] }
+                   ],
+               
+               signingCertificate: 'MIIC5jCCAc4CAQAwgaAxCzAJBgNVBAYTAlBMMRIwEAYDVQQIDAlMdWJlbHNraWUxDzANBgNVBAcMBkx1YmxpbjEOMAwGA1UECgwFc2tpY2gxDDAKBgNVBAsMA0VDTTEUMBIGA1UEAwwLdGVzdCBrbGllbnQxHTAbBgkqhkiG9w0BCQEWDm5hdGFsaWFAeHh4LnBsMRkwFwYDVQRhDBBWQVRQTC00MjU3MDA3NjkwMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzXKm6KX87PRwZ1WVzeAbRW9Yj5CswGQnYotjYefwv9O+5cYcP9zf4owJ2Jnht8VTQbJjvqM5ajRa02cKRtkfa/WqwZteD6KTsCfjc4OUtqWGjItvGtBvRqfjx+Dz5Bu5VKowYBa8mjKL5NK5V8/jt0hcXavu2PVpiW4XzYI3PG3GkqxQINHlFQjYgMEJropXJgL0p1I+sNXXuBhbuWJpa9K/312Dh9j4JdfjKxsOul0OQGFsuIoYVl7aYN6ktMkGvX9ZwdNsBvBLe6CPu2jKEanx06rs7c3ouAxpBwYRCf2PX1IsZhFjGvi0jZo7WF0II5WD3dGm3kcDEWSteWUeQQIDAQABoAAwDQYJKoZIhvcNAQELBQADggEBAJlHoAMLyV4Mp/rsKBHg2MSDSZBt0jFmGkdRO466I5pOE3ZXVyHwRTTM+zTeaQMGZIDXVnyn3IyQRoagoi5FfsGk6RTweW/um4sv6SwXIYJpzHTfJlT8Zn7sU1WEj1Vz21wwNiNM6hqqXjSN4WlbKcCDajKWk33qfWPd6p2N4Jmp+76gNpNkcDhOXK0VC2wtmAEUEhoDc/sPC3w9Mi816Hy1jur3yesXxXgcJ9AIewPjTCxZyNLKPXMiM3rL3OsUmWIGwzlSxTvHkDBmrmCZbPxC3BRnvTMnTajt0v61ImN+jWRzHGfy6Ub/mhvyyuTkf6xU/y9CiByCvJlGlTeFIhs=',
+               })
+   })
+           .then(signature => signature.toString());
+   }
+/*
 
 SignedXml.Sign(algorithm: Algorithm, key: CryptoKey, data: Document, options?: OptionsXAdES): PromiseLike<Signature>;
 

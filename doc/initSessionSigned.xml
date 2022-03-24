@@ -4,7 +4,7 @@
                 xmlns:ns2="http://ksef.mf.gov.pl/schema/gtw/svc/types/2021/10/01/0001"
                 xmlns:ns3="http://ksef.mf.gov.pl/schema/gtw/svc/online/auth/request/2021/10/01/0001">
                 <ns3:Context>
-                    <Challenge>20220324-CR-436F0B0550-AD7F559F04-95</Challenge>
+                    <Challenge>20220324-CR-8EE176541E-DEE6D3245F-18</Challenge>
                     <Identifier xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:SubjectIdentifierByCompanyType">
                         <ns2:Identifier>1111111111</ns2:Identifier>
                     </Identifier>
@@ -42,6 +42,6 @@
                     </Encryption>
                     <Type>SerialNumber</Type>
                 </ns3:Context> 
-                [object Promise]
+                undefined
             </ns3:InitSessionSignedRequest>           
              

@@ -1,6 +1,6 @@
 const https = require('https');
 const fs = require('fs');
-const letSigned = require('../security/sign.js');
+const letSigned = require('../security/signMain.js');
 
 
 const data = JSON.stringify({
