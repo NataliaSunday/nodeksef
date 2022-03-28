@@ -29,10 +29,10 @@ async function main(doc) {
             hash,
         }
     
-    const certPem = fs.readFileSync("./security/myCert.crt", { encoding: "utf8" });
+    const certPem = fs.readFileSync("./security/certificate.crt", { encoding: "utf8" });
     const certDer = pem2der(certPem);
     
-    const keyPem = fs.readFileSync("./security/myPrivateKey.pem", { encoding: "utf8" });
+    const keyPem = fs.readFileSync("./security/key.pem", { encoding: "utf8" });
     const keyDer = pem2der(keyPem);
     const key = await crypto.subtle.importKey("pkcs8", keyDer, alg, false, ["sign"]);
     
@@ -61,6 +61,9 @@ async function main(doc) {
             const oSerializer = new XMLSerializer();
             const sXML = oSerializer.serializeToString(xml);
             console.log(sXML.toString());
+            fs.writeFileSync('./doc/initSigned.xml', sXML, (err) => {
+                console.log(err);
+            });
           
 }
         

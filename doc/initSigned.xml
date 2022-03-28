@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns3:InitSessionSignedRequest xmlns="http://ksef.mf.gov.pl/schema/gtw/svc/online/types/2021/10/01/0001" xmlns:ns2="http://ksef.mf.gov.pl/schema/gtw/svc/types/2021/10/01/0001" xmlns:ns3="http://ksef.mf.gov.pl/schema/gtw/svc/online/auth/request/2021/10/01/0001">
+<ns3:Context>
+<Challenge>20220328-CR-3FE3DBC4D9-1802201EC3-AE</Challenge>
+<Identifier xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:SubjectIdentifierByCompanyType">
+<ns2:Identifier>1111111111</ns2:Identifier>
+</Identifier>
+<DocumentType>
+<ns2:Service>KSeF</ns2:Service>
+<ns2:FormCode>
+<ns2:SystemCode>FA (1)</ns2:SystemCode>
+<ns2:SchemaVersion>1-0E</ns2:SchemaVersion>
+<ns2:TargetNamespace>http://crd.gov.pl/wzor/2021/11/29/11089/</ns2:TargetNamespace>
+<ns2:Value>FA</ns2:Value>
+</ns2:FormCode>
+</DocumentType>
+<Encryption>
+<ns2:EncryptionKey>
+<ns2:Encoding>Base64</ns2:Encoding>
+<ns2:Algorithm>AES</ns2:Algorithm>
+<ns2:Size>256</ns2:Size>
+<ns2:Value>H2+YWam2q/6GJafnC+qbkWDeNvZb8brpUkXw5cstNP5GnK+DGyIIwgCS7kXJXa2X8BOh9OWJXry5l7wZMq+WCXCif1+pQ+5+FbJlm16A3PB5BNy2S6cBubS2Q+kdk5FJs7pFMt6U+6jEPKMrmxi0D3nFyYK6cKmVZFQHa/4faj7qa70KEpyL49WJxdHGbQfAoe05z5OKyiZZftz+oGJVystA+fCLufVhiZ7gIuZLov8aamO1ghum1vYsG7nqJ1OrmUVrpgqv5jCqdMo+4FqG9XMKntgGsmydskjPiSxj1mF4+qNAP6neINrDrG+M1lCg/VBhrdnTAGnyfsODfohbiw==</ns2:Value>
+</ns2:EncryptionKey>
+<ns2:EncryptionInitializationVector>
+<ns2:Encoding>Base64</ns2:Encoding>
+<ns2:Bytes>16</ns2:Bytes>
+<ns2:Value>5+DjwCfRIQPaX1Rj3jMAWw==</ns2:Value>
+</ns2:EncryptionInitializationVector>
+<ns2:EncryptionAlgorithmKey>
+<ns2:Algorithm>RSA</ns2:Algorithm>
+<ns2:Mode>ECB</ns2:Mode>
+<ns2:Padding>PKCS#1</ns2:Padding>
+</ns2:EncryptionAlgorithmKey>
+<ns2:EncryptionAlgorithmData>
+<ns2:Algorithm>AES</ns2:Algorithm>
+<ns2:Mode>CBC</ns2:Mode>
+<ns2:Padding>PKCS#7</ns2:Padding>
+</ns2:EncryptionAlgorithmData>
+</Encryption>
+<Type>SerialNumber</Type>
+</ns3:Context>
+ <ds:Signature Id="id-62ca2428eb31" xmlns:ds="http://www.w3.org/2000/09/xmldsig#"><ds:SignedInfo><ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/><ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/><ds:Reference><ds:Transforms><ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/><ds:Transform Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/></ds:Transforms><ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/><ds:DigestValue>96hyW27CT1VXmnz5rUMk+CHsECiAg+mckXKNmHxf6Rk=</ds:DigestValue></ds:Reference><ds:Reference URI="#xades-id-62ca2428eb31" Type="http://uri.etsi.org/01903#SignedProperties"><ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/><ds:DigestValue>IkKi9wChjnxcfDm8x/HvTkWLdaXTYH2+rmop/7SM7OE=</ds:DigestValue></ds:Reference></ds:SignedInfo><ds:SignatureValue>GoJgdwqC0ZfJ5aQJnbba4nnbwbA4PUMS/BR0YKTghuIphUt6GxoBJ2c9xvIL8xCFQmXIUzD46EJeK3Q9lUmbjCNcqAvL6xZg6A6JjuRRNSTKDh2IGFMdw4VZpL3MIqvXaieVeK4SuJatUGdPnaS0ID3OPEtDp7PY1j7uJRh++BZvwNNcmywVLxNs9KYX/Jm9fihBgmYd8Nkov5iCzVs1wpz2ruBRYmbURW5e5Y8Hm/VFFWP57Fow8yxwaxSIYQEiYVEt88MXCmbQdo6RCxo8kyF89ivPrXhFwVOWs1hIaAnMg8V73YB7q/81Jn+JNUx63W8SdrKgirW0ot4o6SIyOA==</ds:SignatureValue><ds:Object><xades:QualifyingProperties Target="#id-62ca2428eb31" xmlns:xades="http://uri.etsi.org/01903/v1.3.2#"><xades:SignedProperties Id="xades-id-62ca2428eb31"><xades:SignedSignatureProperties><xades:SigningTime>2022-03-28T12:42:58.672Z</xades:SigningTime><xades:SigningCertificate><xades:Cert><xades:CertDigest><ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/><ds:DigestValue>w3ap+r1YSOg12e6G/KkZyZo+GaYrLV3DkGFQTQ494fc=</ds:DigestValue></xades:CertDigest><xades:IssuerSerial><ds:X509IssuerName>G=Natalia , SN=Niedziela , 2.5.4.5=PESEL-12345678910</ds:X509IssuerName><ds:X509SerialNumber>260789388943389122106106139696705201792871856005</ds:X509SerialNumber></xades:IssuerSerial></xades:Cert></xades:SigningCertificate></xades:SignedSignatureProperties></xades:SignedProperties></xades:QualifyingProperties></ds:Object></ds:Signature></ns3:InitSessionSignedRequest>
