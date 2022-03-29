@@ -6,7 +6,7 @@ const main = require('../security/signMain.js');
 const data = JSON.stringify({
     "contextIdentifier": {
         "type": "onip",
-        "identifier": "1111111111"
+        "identifier": "5270036625"
     }
 })
 const options = {

@@ -29,7 +29,7 @@ async function main(doc) {
             hash,
         }
     
-    const certPem = fs.readFileSync("../keys/myCert.crt", { encoding: "utf8" });
+    const certPem = fs.readFileSync("./keys/myCert.crt", { encoding: "utf8" });
     const certDer = pem2der(certPem);
     
     const keyPem = fs.readFileSync("../keys/myPrivateKey.pem", { encoding: "utf8" });
