@@ -29,10 +29,10 @@ async function main(doc) {
             hash,
         }
     
-    const certPem = fs.readFileSync("./security/certificate.crt", { encoding: "utf8" });
+    const certPem = fs.readFileSync("../keys/myCert.crt", { encoding: "utf8" });
     const certDer = pem2der(certPem);
     
-    const keyPem = fs.readFileSync("./security/key.pem", { encoding: "utf8" });
+    const keyPem = fs.readFileSync("../keys/myPrivateKey.pem", { encoding: "utf8" });
     const keyDer = pem2der(keyPem);
     const key = await crypto.subtle.importKey("pkcs8", keyDer, alg, false, ["sign"]);
     
