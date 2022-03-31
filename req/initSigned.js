@@ -24,7 +24,7 @@ module.exports = function initSigned (doc)  {
     
         res.on('data', d => {
             
-            console.log(d);
+           
             process.stdout.write(d)
             });
         })

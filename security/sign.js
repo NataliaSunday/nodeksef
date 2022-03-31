@@ -61,7 +61,7 @@ async function getSigned(doc) {
             const oSerializer = new XMLSerializer();
             const sXML = oSerializer.serializeToString(xml);
             console.log(sXML.toString());
-            fs.writeFileSync('./doc/initSigned.xml', sXML, (err) => {
+            fs.writeFile('./doc/initSigned.xml', sXML, (err) => {
                 console.log(err);
             });
           
