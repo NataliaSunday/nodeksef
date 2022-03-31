@@ -21,13 +21,12 @@ function pem2der(pem) {
     return new Uint8Array(Buffer.from(pem, "base64")).buffer;
 }
 
-module.exports =   
-async function getSigned(doc) {
-        const hash = "SHA-256"
-        const alg = {
-            name: "RSASSA-PKCS1-v1_5",
-            hash,
-        }
+module.exports = async function getSigned(doc) {
+    const hash = "SHA-256"
+    const alg = {
+        name: "RSASSA-PKCS1-v1_5",
+        hash,
+    }
     
     const certPem = fs.readFileSync("./keys/myCert.crt", { encoding: "utf8" });
     const certDer = pem2der(certPem);
@@ -49,22 +48,33 @@ async function getSigned(doc) {
             references: [
                 { hash, transforms: ["c14n", "enveloped"] }
             ],
-            
             signingCertificate: x509
         })
-          
-
                 
-            xml.documentElement.appendChild(signature.GetXml());
+    xml.documentElement.appendChild(signature.GetXml());
 
-            // serialize XML
-            const oSerializer = new XMLSerializer();
-            const sXML = oSerializer.serializeToString(xml);
-            console.log(sXML.toString());
-            fs.writeFile('./doc/initSigned.xml', sXML, (err) => {
-                console.log(err);
-            });
+    // serialize XML
+    const oSerializer = new XMLSerializer();
+    const sXML = oSerializer.serializeToString(xml);
+    console.log(sXML.toString());
+           
           
-}
-        
- 
+    let path = './doc/initSigned.xml'
+    fs.access(path, fs.F_OK, (err) => {
+        if (err) {
+            console.error("file not exist");
+            fs.writeFile('./doc/initSigned.xml', sXML, (err) => {
+            console.log('file created', err);
+            }); 
+        }else{
+            console.log('file exits')
+            fs.unlink('./doc/initSigned.xml', (err)=>{
+                console.log(err)
+            });
+            console.log('file removed')
+            fs.writeFile('./doc/initSigned.xml', sXML, (err) => {
+                    console.log('file created', err);
+            });                      
+        }
+    })            
+ }
