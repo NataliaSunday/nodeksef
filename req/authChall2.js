@@ -18,7 +18,7 @@ const options = {
     }
 }
       
-module.exports = function authChal(){
+module.exports = function authChal2(){
         
     const req = https.request(options, res => {
         console.log(`statusCode: ${res.statusCode}`)
