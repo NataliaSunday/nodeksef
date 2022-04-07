@@ -59,6 +59,7 @@ module.exports = async function getSigned(doc) {
     console.log(sXML.toString());
            
           
+    
     let path = './doc/initSigned.xml'
     fs.access(path, fs.F_OK, (err) => {
         if (err) {
@@ -68,11 +69,11 @@ module.exports = async function getSigned(doc) {
             }); 
         }else{
             console.log('file exits')
-            fs.unlink('./doc/initSigned.xml', (err)=>{
+        fs.unlink('./doc/initSigned.xml', (err)=>{
                 console.log(err)
             });
             console.log('file removed')
-            fs.writeFile('./doc/initSigned.xml', sXML, (err) => {
+          fs.writeFile('./doc/initSigned.xml', sXML, (err) => {
                     console.log('file created', err);
             });                      
         }

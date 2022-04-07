@@ -18,9 +18,15 @@ const options = {
 module.exports = function initSigned (doc)  {
 
     getSigned(doc);
-    let data =fs.readFileSync('./doc/initSigned.xml');
-    console.log(data)
 
+    console.log(doc)
+    let data =fs.readFileSync('./doc/initSigned.xml', (err, data) => {
+        if (err) {
+          console.error(err)
+          return
+        }
+        console.log(data)
+      });
 
     const req = https.request(options, res => {
         console.log(`statusCode: ${res.statusCode}`)
